@@ -1,4 +1,7 @@
 import os,re
+from modifiers import filter10
+from modifiers.filter10 import Filter10
+
 
 def split_file(path,filename):
     count = {}
@@ -29,7 +32,10 @@ def purge(path):
             os.remove(os.path.join(path, f))
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    purge('/Users/tudorsorin/filterpfsense/')
-    split_file('/Users/tudorsorin/filterpfsense/','filter.log.concat')
+    path = '/Users/tudorsorin/filterpfsense/'
+    purge(path)
+    split_file(path, 'filter.log.concat')
+    df_file = Filter10(path, 'filter.log.concat.10.csv')
+    df_file.split_line_ends()
 
 
